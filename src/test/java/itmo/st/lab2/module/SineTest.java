@@ -3,7 +3,8 @@ package itmo.st.lab2.module;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doAnswer;
-import java.util.stream.IntStream;
+
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,12 +23,23 @@ public class SineTest {
     @Mock
     Factorial factorialMock;
 
-    Double[] arg = { 0.0, Math.PI / 6, Math.PI / 4, Math.PI / 3, Math.PI / 2, Math.PI * 2 / 3, Math.PI * 3 / 4,
-            Math.PI * 5 / 6, Math.PI, -Math.PI / 6, -Math.PI / 4, -Math.PI / 3, -Math.PI / 2, Math.PI * 8 / 3 };
-    Double[] expected = { 0.0, 0.5, Math.pow(2, 0.5) / 2, Math.pow(3, 0.5) / 2, 1.0, Math.pow(3, 0.5) / 2,
-            Math.pow(2, 0.5) / 2, 0.5, 0.0, -0.5, -Math.pow(2, 0.5) / 2,
-            -Math.pow(3, 0.5) / 2, -1.0, Math.pow(3, 0.5) / 2 };
     Double eps = 10e-6;
+
+    Map<Double, Double> testArgs = Map.ofEntries(
+            Map.entry(0.0, 0.0),
+            Map.entry(Math.PI / 6, 0.5),
+            Map.entry(Math.PI / 4, Math.pow(2, 0.5) / 2),
+            Map.entry(Math.PI / 3, Math.pow(3, 0.5) / 2),
+            Map.entry(Math.PI / 2, 1.0),
+            Map.entry(Math.PI * 2 / 3, Math.pow(3, 0.5) / 2),
+            Map.entry(Math.PI * 3 / 4, Math.pow(2, 0.5) / 2),
+            Map.entry(Math.PI * 5 / 6, 0.5),
+            Map.entry(Math.PI, 0.0),
+            Map.entry(-Math.PI / 6, -0.5),
+            Map.entry(-Math.PI / 4, -Math.pow(2, 0.5) / 2),
+            Map.entry(-Math.PI / 3, -Math.pow(3, 0.5) / 2),
+            Map.entry(-Math.PI / 2, -1.0),
+            Map.entry(Math.PI * 8 / 3, Math.pow(3, 0.5) / 2));
 
     @BeforeEach
     public void injectMocks() {
@@ -62,9 +74,9 @@ public class SineTest {
     @TestFactory
     Stream<DynamicTest> givenArg_whenCalc_thenReturnSin() {
         Sine sin = new Sine(factorialMock);
-        return IntStream.iterate(0, i -> i + 1).limit(arg.length)
-                .mapToObj(i -> DynamicTest.dynamicTest(String.format("Sine test: %d", i), () -> {
-                    assertEquals(expected[i], sin.calc(arg[i]), eps);
+        return testArgs.entrySet().stream()
+                .map(e -> DynamicTest.dynamicTest(String.format("Sine test: x = %.2f", e.getKey()), () -> {
+                    assertEquals(e.getValue(), sin.calc(e.getKey()), eps);
                 }));
     }
 }

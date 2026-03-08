@@ -23,9 +23,7 @@ public class Sine implements MathFunction {
     public Double calc(Number arg) {
         Double x = Math.abs(arg.doubleValue());
 
-        while (x > Math.PI) {
-            x -= 2 * Math.PI;
-        }
+        x %= Math.PI;
 
         Integer n = -1;
         Double res = 0.0;
