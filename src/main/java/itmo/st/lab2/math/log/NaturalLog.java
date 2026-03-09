@@ -5,7 +5,7 @@ import itmo.st.lab2.math.MathFunction;
 public class NaturalLog implements MathFunction {
 
     @Override
-    public Double calc(Number arg) throws IllegalArgumentException {
+    public Double calc(Number arg) {
         Double x = arg.doubleValue();
 
         if (x == 1)
@@ -15,7 +15,7 @@ public class NaturalLog implements MathFunction {
             return Double.NEGATIVE_INFINITY;
 
         if (x < 0)
-            throw new IllegalArgumentException("NaturalLog does not accept negative args");
+            return Double.NaN;
 
         Integer n = 1;
         Double res = 0.0;
