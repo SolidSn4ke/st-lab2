@@ -35,6 +35,13 @@ public class CosineTest {
             Map.entry(Math.PI * 3 / 4, -Math.pow(2, 0.5) / 2),
             Map.entry(Math.PI * 5 / 6, -Math.pow(3, 0.5) / 2),
             Map.entry(Math.PI, -1.0),
+            Map.entry(-Math.PI / 6, Math.pow(3, 0.5) / 2),
+            Map.entry(-Math.PI / 4, Math.pow(2, 0.5) / 2),
+            Map.entry(-Math.PI / 3, 0.5),
+            Map.entry(-Math.PI / 2, 0.0),
+            Map.entry(-Math.PI * 2 / 3, -0.5),
+            Map.entry(-Math.PI * 3 / 4, -Math.pow(2, 0.5) / 2),
+            Map.entry(-Math.PI * 5 / 6, -Math.pow(3, 0.5) / 2),
             Map.entry(Math.PI * 8 / 3, -0.5));
 
     @BeforeEach
@@ -59,6 +66,20 @@ public class CosineTest {
                 return 0.5;
             if (Math.abs(Math.PI - x) < eps)
                 return 0.0;
+            if (Math.abs(-Math.PI / 6 - x) < eps)
+                return -0.5;
+            if (Math.abs(-Math.PI / 4 - x) < eps)
+                return -Math.pow(2, 0.5) / 2;
+            if (Math.abs(-Math.PI / 3 - x) < eps)
+                return -Math.pow(3, 0.5) / 2;
+            if (Math.abs(-Math.PI / 2 - x) < eps)
+                return -1.0;
+            if (Math.abs(-Math.PI * 2 / 3 - x) < eps)
+                return -Math.pow(3, 0.5) / 2;
+            if (Math.abs(-Math.PI * 3 / 4 - x) < eps)
+                return -Math.pow(2, 0.5) / 2;
+            if (Math.abs(-Math.PI * 5 / 6 - x) < eps)
+                return -0.5;
 
             return Double.NaN;
         });
