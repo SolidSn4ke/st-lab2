@@ -12,7 +12,7 @@ public class Sine implements MathFunction {
     Factorial factorial;
 
     public Sine() {
-        this(new Factorial());
+        this.factorial = new Factorial();
     }
 
     public Sine(Factorial factorial) {

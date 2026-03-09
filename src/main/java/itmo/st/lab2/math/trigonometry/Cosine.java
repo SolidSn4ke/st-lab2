@@ -1,7 +1,6 @@
 package itmo.st.lab2.math.trigonometry;
 
 import itmo.st.lab2.math.MathFunction;
-import itmo.st.lab2.math.special.Factorial;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +11,7 @@ public class Cosine implements MathFunction {
     Sine sin;
 
     public Cosine() {
-        this.sin = new Sine(new Factorial());
+        this.sin = new Sine();
     }
 
     public Cosine(Sine sin) {
