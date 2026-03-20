@@ -20,9 +20,9 @@ public class Cosine implements MathFunction {
 
     @Override
     public Double calc(Number arg) {
-        double x = Math.abs(arg.doubleValue());
+        double x = arg.doubleValue();
 
         Double res = Math.pow(1 - Math.pow(sin.calc(x), 2), 0.5);
-        return (x % (2 * Math.PI)) > Math.PI / 2 && (x % (2 * Math.PI)) < Math.PI * 3 / 2 ? -res : res;
+        return (Math.abs(x) % (2 * Math.PI)) > Math.PI / 2 && (Math.abs(x) % (2 * Math.PI)) < Math.PI * 3 / 2 ? -res : res;
     }
 }
