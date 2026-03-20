@@ -54,5 +54,4 @@ public class CustomFunc implements MathFunction {
                     + ln.calc(x));
         }
     }
-
 }

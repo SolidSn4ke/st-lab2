@@ -16,8 +16,7 @@ public class Secant implements MathFunction {
 
     @Override
     public Double calc(Number arg) {
-        Double x = Math.abs(arg.doubleValue());
-
+        Double x = arg.doubleValue();
         return 1 / cos.calc(x);
     }
 }
