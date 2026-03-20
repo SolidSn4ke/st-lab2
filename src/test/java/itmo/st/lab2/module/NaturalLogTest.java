@@ -34,7 +34,7 @@ public class NaturalLogTest {
     Stream<DynamicTest> givenArg_whenCalc_thenReturnLn() {
         NaturalLog ln = new NaturalLog();
         return testArgs.entrySet().stream()
-                .map(e -> dynamicTest(String.format("NaturalLog test: x = %.2f", e.getKey()), () -> {
+                .map(e -> dynamicTest(String.format("ln %.2f = %.2f", e.getKey(), e.getValue()), () -> {
                     assertEquals(e.getValue(), ln.calc(e.getKey()), eps);
                 }));
     }

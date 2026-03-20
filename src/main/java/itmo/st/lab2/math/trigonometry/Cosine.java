@@ -22,10 +22,7 @@ public class Cosine implements MathFunction {
     public Double calc(Number arg) {
         double x = Math.abs(arg.doubleValue());
 
-        x = x % (2 * Math.PI);
-
         Double res = Math.pow(1 - Math.pow(sin.calc(x), 2), 0.5);
-        return x > Math.PI / 2 && x < Math.PI * 3 / 2 ? -res : res;
+        return (x % (2 * Math.PI)) > Math.PI / 2 && (x % (2 * Math.PI)) < Math.PI * 3 / 2 ? -res : res;
     }
-
 }

@@ -39,8 +39,7 @@ public class TangentTest {
             Map.entry(-Math.PI / 4, -1.0),
             Map.entry(-Math.PI / 3, -Math.sqrt(3)),
             Map.entry(Math.PI / 2, Double.POSITIVE_INFINITY),
-            Map.entry(-Math.PI / 2, Double.POSITIVE_INFINITY
-            ),
+            Map.entry(-Math.PI / 2, Double.POSITIVE_INFINITY),
             Map.entry(Math.PI * 7 / 3, Math.sqrt(3)),
             Map.entry(-Math.PI * 7 / 3, -Math.sqrt(3)));
 
@@ -74,9 +73,13 @@ public class TangentTest {
                 return -Math.pow(3, 0.5) / 2;
             if (Math.abs(-Math.PI / 2 - x) < eps)
                 return -1.0;
-
+            if (Math.abs(Math.PI * 7 / 3 - x) < eps)
+                return Math.pow(3, 0.5) / 2;
+            if (Math.abs(-Math.PI * 7 / 3 - x) < eps)
+                return -Math.pow(3, 0.5) / 2;
             return Double.NaN;
         });
+
         when(cosMock.calc(anyDouble())).thenAnswer(invocation -> {
             Double x = invocation.getArgument(0);
             if (Math.abs(x) < eps)
@@ -105,6 +108,10 @@ public class TangentTest {
                 return 0.5;
             if (Math.abs(-Math.PI / 2 - x) < eps)
                 return 0.0;
+            if (Math.abs(Math.PI * 7 / 3 - x) < eps)
+                return 0.5;
+            if (Math.abs(-Math.PI * 7 / 3 - x) < eps)
+                return 0.5;
 
             return Double.NaN;
         });
@@ -114,7 +121,7 @@ public class TangentTest {
     Stream<DynamicTest> givenArg_whenCalc_thenReturnTan() {
         Tangent tan = new Tangent(sinMock, cosMock);
         return testArgs.entrySet().stream()
-                .map(e -> dynamicTest(String.format("Tangent test: x = %.2f", e.getKey()), () -> {
+                .map(e -> dynamicTest(String.format("tan %.2f = %.2f", e.getKey(), e.getValue()), () -> {
                     assertEquals(e.getValue(), tan.calc(e.getKey()), eps);
                 }));
     }

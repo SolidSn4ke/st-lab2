@@ -20,7 +20,7 @@ public class Cosecant implements MathFunction {
         if (x % Math.PI == 0.0) {
             return Double.POSITIVE_INFINITY;
         }
-        x %= Math.PI;
+
         return 1 / sin.calc(x);
     }
 }

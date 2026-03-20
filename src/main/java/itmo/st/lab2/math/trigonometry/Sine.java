@@ -32,5 +32,4 @@ public class Sine implements MathFunction {
         }
         return Math.signum(arg.doubleValue()) * res;
     }
-
 }

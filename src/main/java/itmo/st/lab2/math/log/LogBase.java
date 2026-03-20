@@ -25,5 +25,4 @@ public class LogBase implements MathFunction {
         this.base = newBase.doubleValue();
         return calc(arg);
     }
-
 }

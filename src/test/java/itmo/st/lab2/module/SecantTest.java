@@ -53,23 +53,31 @@ public class SecantTest {
             x = Math.abs(x);
             if (x < eps)
                 return 1.0;
-            if (x - Math.PI / 6 < eps)
+            if (Math.abs(x - Math.PI / 6) < eps)
                 return Math.pow(3, 0.5) / 2;
-            if (x - Math.PI / 4 < eps)
+            if (Math.abs(x - Math.PI / 4) < eps)
                 return Math.pow(2, 0.5) / 2;
-            if (x - Math.PI / 3 < eps)
+            if (Math.abs(x - Math.PI / 3) < eps)
                 return 0.5;
-            if (x - Math.PI / 2 < eps)
+            if (Math.abs(x - Math.PI / 2) < eps)
                 return 0.0;
-            if (x - Math.PI * 2 / 3 < eps)
+            if (Math.abs(x - Math.PI * 2 / 3) < eps)
                 return -0.5;
-            if (x - Math.PI * 3 / 4 < eps)
+            if (Math.abs(x - Math.PI * 3 / 4) < eps)
                 return -Math.pow(2, 0.5) / 2;
-            if (x - Math.PI * 5 / 6 < eps)
+            if (Math.abs(x - Math.PI * 5 / 6) < eps)
                 return -Math.pow(3, 0.5) / 2;
-            if (x - Math.PI < eps)
+            if (Math.abs(x - Math.PI) < eps)
                 return -1.0;
-
+            if (Math.abs(x - 5 * Math.PI / 2) < eps) {
+                return 0.0;
+            }
+            if (Math.abs(x - 2 * Math.PI) < eps) {
+                return 1.0;
+            }
+            if (Math.abs(x - 8 * Math.PI / 3) < eps) {
+                return -0.5;
+            }
             return Double.NaN;
         });
     }
@@ -78,7 +86,7 @@ public class SecantTest {
     Stream<DynamicTest> givenArg_whenCalc_thenReturnSec() {
         Secant sec = new Secant(cosMock);
         return testArgs.entrySet().stream()
-                .map(e -> dynamicTest(String.format("Secant test: x = %.2f", e.getKey()), () -> {
+                .map(e -> dynamicTest(String.format("Sec %.2f = %.2f", e.getKey(), e.getValue()), () -> {
                     assertEquals(e.getValue(), sec.calc(e.getKey()), eps);
                 }));
     }

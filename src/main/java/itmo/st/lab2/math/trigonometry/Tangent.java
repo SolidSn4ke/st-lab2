@@ -24,7 +24,7 @@ public class Tangent implements MathFunction {
         if (x % (Math.PI / 2) == 0.0 && x % Math.PI != 0.0) {
             return Double.POSITIVE_INFINITY;
         }
-        x %= Math.PI / 2;
+
         return sin.calc(x) / cos.calc(x);
     }
 }

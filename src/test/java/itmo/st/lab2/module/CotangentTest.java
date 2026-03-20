@@ -83,6 +83,10 @@ public class CotangentTest {
                 return -0.5;
             if (Math.abs(-Math.PI - x) < eps)
                 return 0.0;
+            if (Math.abs(Math.PI * 7 / 3 - x) < eps)
+                return Math.pow(3, 0.5) / 2;
+            if (Math.abs(-Math.PI * 7 / 3 - x) < eps)
+                return -Math.pow(3, 0.5) / 2;
             return Double.NaN;
         });
 
@@ -122,6 +126,10 @@ public class CotangentTest {
                 return -Math.pow(3, 0.5) / 2;
             if (Math.abs(-Math.PI - x) < eps)
                 return -1.0;
+            if (Math.abs(Math.PI * 7 / 3 - x) < eps)
+                return 0.5;
+            if (Math.abs(-Math.PI * 7 / 3 - x) < eps)
+                return 0.5;
             return Double.NaN;
         });
     }
@@ -130,7 +138,7 @@ public class CotangentTest {
     Stream<DynamicTest> givenArg_whenCalc_thenReturnCot() {
         Cotangent cot = new Cotangent(sinMock, cosMock);
         return testArgs.entrySet().stream()
-                .map(e -> dynamicTest(String.format("Cotangent test: x = %.2f", e.getKey()), () -> {
+                .map(e -> dynamicTest(String.format("cot %.2f = %.2f", e.getKey(), e.getValue()), () -> {
                     assertEquals(e.getValue(), cot.calc(e.getKey()), eps);
                 }));
     }

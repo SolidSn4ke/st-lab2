@@ -62,6 +62,8 @@ public class CosecantTest {
                 return Math.signum(x) * Math.pow(3, 0.5) / 2;
             if (Math.abs(x) - Math.PI * 5 / 6 < eps)
                 return Math.signum(x) * 0.5;
+            if (Math.abs(x) - Math.PI * 8 / 3 < eps)
+                return Math.pow(3, 0.5) / 2;
             return Double.NaN;
         });
     }
@@ -70,7 +72,7 @@ public class CosecantTest {
     Stream<DynamicTest> givenArg_whenCalc_thenReturnCsc() {
         Cosecant csc = new Cosecant(sinMock);
         return testArgs.entrySet().stream()
-                .map(e -> dynamicTest(String.format("Cosecant test: x = %.2f", e.getKey()), () -> {
+                .map(e -> dynamicTest(String.format("csc %.2f = %.2f", e.getKey(), e.getValue()), () -> {
                     assertEquals(e.getValue(), csc.calc(e.getKey()), eps);
                 }));
     }

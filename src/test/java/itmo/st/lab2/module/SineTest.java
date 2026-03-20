@@ -75,7 +75,7 @@ public class SineTest {
     Stream<DynamicTest> givenArg_whenCalc_thenReturnSin() {
         Sine sin = new Sine(factorialMock);
         return testArgs.entrySet().stream()
-                .map(e -> DynamicTest.dynamicTest(String.format("Sine test: x = %.2f", e.getKey()), () -> {
+                .map(e -> DynamicTest.dynamicTest(String.format("sin %.2f = %.2f", e.getKey(), e.getValue()), () -> {
                     assertEquals(e.getValue(), sin.calc(e.getKey()), eps);
                 }));
     }

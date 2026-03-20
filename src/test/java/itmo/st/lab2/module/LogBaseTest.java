@@ -74,7 +74,6 @@ public class LogBaseTest {
                 return 3.218875;
             if (x == 0.2)
                 return -1.609437;
-
             return Double.NaN;
         });
     }
@@ -82,9 +81,9 @@ public class LogBaseTest {
     @TestFactory
     Stream<DynamicContainer> givenArgAndBase_whenCalc_thenReturnLogBase() {
         LogBase log = new LogBase(0.0, lnMock);
-        return testArgs.entrySet().stream().map(e -> dynamicContainer(String.format("Log%s tests", e.getKey()),
+        return testArgs.entrySet().stream().map(e -> dynamicContainer(String.format("log_%s tests", e.getKey()),
                 e.getValue().entrySet().stream().map(
-                        entry -> dynamicTest(String.format("Log%s test: x = %.2f", e.getKey(), entry.getKey()), () -> {
+                        entry -> dynamicTest(String.format("log_%s %.2f = %.2f", e.getKey(), entry.getKey(), entry.getValue()), () -> {
                             assertEquals(entry.getValue(), log.calcWithBase(entry.getKey(), e.getKey()), eps);
                         }))));
     }

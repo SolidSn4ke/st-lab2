@@ -24,8 +24,7 @@ public class Cotangent implements MathFunction {
         if (x % Math.PI == 0.0) {
             return Double.POSITIVE_INFINITY;
         }
-        x %= Math.PI;
+
         return cos.calc(x) / sin.calc(x);
     }
-
 }

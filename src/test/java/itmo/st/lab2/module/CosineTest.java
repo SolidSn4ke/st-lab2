@@ -80,6 +80,8 @@ public class CosineTest {
                 return -Math.pow(2, 0.5) / 2;
             if (Math.abs(-Math.PI * 5 / 6 - x) < eps)
                 return -0.5;
+            if (Math.abs(Math.PI * 8 / 3 - x) < eps)
+                return Math.pow(3, 0.5) / 2;
 
             return Double.NaN;
         });
@@ -89,7 +91,7 @@ public class CosineTest {
     Stream<DynamicTest> givenArg_whenCals_thenReturnCosine() {
         Cosine cos = new Cosine(sineMock);
         return testArgs.entrySet().stream()
-                .map(e -> dynamicTest(String.format("Cosine test: x = %.2f", e.getKey()), () -> {
+                .map(e -> dynamicTest(String.format("cos %.2f = %.2f", e.getKey(), e.getValue()), () -> {
                     assertEquals(e.getValue(), cos.calc(e.getKey()), eps);
                 }));
     }
