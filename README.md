@@ -30,8 +30,82 @@ x > 0 : (((((log_10(x) + log_2(x)) + log_3(x)) - ((log_5(x) + log_10(x)) / (log_
 2. С помощью JUNIT5 разработать тестовое покрытие системы функций, проведя анализ эквивалентности и учитывая особенности системы функций. Для анализа особенностей системы функций и составляющих ее частей можно использовать сайт [wolframalpha](https://www.wolframalpha.com/).
 3. Собрать приложение, состоящее из заглушек. Провести интеграцию приложения по 1 модулю, с обоснованием стратегии интеграции, проведением интеграционных тестов и контролем тестового покрытия системы функций.
 
+### Ход работы
+
+В качестве тестового покрытия выбирались характерные для каждой функции точки (максимум/минимкум, пересечение с осями, разрывы, граничные случаи)
+
+В качестве стратегии интеграции была выбрана стратегия сверху-вниз. В данном случае, если в коде есть ошибка, то эта стратегия поможет изолировать ее до уровня слоя, что помогает легче индетифицироваить проблему
+
+#### Графики csv выгрузок
+
+$sin(\alpha), \alpha \in [-\pi;\pi]$
+
+![sin](./out/sin.png)
+
+$cos(\alpha), \alpha \in [-\pi;\pi]$
+
+![cos](./out/cos.png)
+
+$tg(\alpha), \alpha \in [-\frac{\pi}{3};\frac{\pi}{3}]$
+
+![tg](./out/tan.png)
+
+$ctg(\alpha), \alpha \in [\frac{\pi}{6};\frac{5\pi}{6}]$
+
+![ctg](./out/cot.png)
+
+$sec(\alpha), \alpha \in [-\frac{\pi}{3};\frac{4\pi}{3}]$
+
+![sec](./out/sec.png)
+
+$csc(\alpha), \alpha \in [-\frac{5\pi}{6};\frac{5\pi}{6}]$
+
+![csc](./out/csc.png)
+
+$ln(x), x \in [0;5]$
+
+![ln](./out/ln.png)
+
+$log_{2}(x), x \in [0;10]$
+
+![log2](./out/log2.png)
+
+$log_3(x), x \in [0;10]$
+
+![log3](./out/log3.png)
+
+$log_5(x), x \in [0;10]$
+
+![log5](./out/log5.png)
+
+$log_{10}(x), x \in [0;10]$
+
+![log10](./out/log10.png)
+
+[f](#вариант-4356719)$(x), x \in [-5.9;-3.86]$
+
+![f1](./out/custom1.png)
+
+[f](#вариант-4356719)$(x), x \in [-2.38;-1.1]$
+
+![f2](./out/custom2.png)
+
+[f](#вариант-4356719)$(x), x \in [0.05;12]$
+
+![f3](./out/custom3.png)
+
+Сравнение с desmos:
+
+![desmos](./out/Screenshot%202026-03-21%20at%2021.36.52.png)
+
 ### UML
+
+![uml](./out/hLJ1ZjCm4BtdA-ROGhFYdCDgby9AIC3520w8W-jwKul4hkm98Chkj-CaqwbRl55Muh8Tpvitps-odfk0qcFNDaNuRknUUjc2QcG8juZUR3hKxvIpmlpMyAhOcQq6PRngT54CLR3k0hhshhCA3WL06OojG1Yh-uDoeOAr2tH46R5FqjRQuWXZ3sEI2MeWQ2N7H8nYEpusiS57YPsNpNjN3nbNLn3Zrp8C6cNyy_9qgSMoFolPg8NqTIH….png)
 
 ### Листинг
 
+[Ссылка на github репозиторий](https://github.com/SolidSn4ke/st-lab2)
+
 ## Вывод
+
+В ходе работы я провел интеграционное тестирование математических модулей, детальнее изучил различные стратегии интеграции, а также глубже узнал о строении библиотеки Mockito
