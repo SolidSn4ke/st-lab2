@@ -1,10 +1,14 @@
 package itmo.st.lab2.math.log;
 
 import itmo.st.lab2.math.MathFunction;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class LogBase implements MathFunction {
     double base;
-    NaturalLog ln;
+    final NaturalLog ln;
 
     public LogBase() {
         this.ln = new NaturalLog();
